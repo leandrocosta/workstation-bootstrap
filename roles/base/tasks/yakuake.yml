@@ -1,0 +1,8 @@
+- name: install yakuake
+  apt: pkg={{ item }} state=installed
+  sudo: yes
+  with_items:
+    - yakuake
+
+- name: put yakuake into Session Startup Apps
+  copy: src=yakuake.desktop dest="{{ home }}/.config/autostart/yakuake.desktop"

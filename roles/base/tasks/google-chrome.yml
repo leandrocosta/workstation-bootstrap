@@ -1,0 +1,5 @@
+- name: install google-chrome
+  apt: pkg={{ item }} state=installed
+  sudo: yes
+  with_items:
+    - google-chrome-stable

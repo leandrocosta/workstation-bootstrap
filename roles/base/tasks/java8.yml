@@ -1,0 +1,9 @@
+- name: add repository
+  apt_repository: repo='ppa:webupd8team/java' state=present update_cache=yes
+  sudo: yes
+
+- name: install java
+  apt: pkg={{ item }} state=installed
+  sudo: yes
+  with_items:
+    - oracle-java8-installer

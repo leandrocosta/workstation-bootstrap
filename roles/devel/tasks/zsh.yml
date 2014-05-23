@@ -1,0 +1,13 @@
+- name: install zsh
+  apt: pkg={{ item }} state=installed
+  sudo: yes
+  with_items:
+    - zsh
+
+- name: check if oh-my-zsh is already installed
+  stat: path={{ home }}/.oh-my-zsh
+  register: ohmyzsh_path
+
+- name: setup oh-my-zsh
+  shell: wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O /tmp/install.sh && sh /tmp/install.sh
+  when: ohmyzsh_path.stat.exists == False

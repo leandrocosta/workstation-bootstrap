@@ -1,0 +1,6 @@
+- hosts: localhost
+  vars:
+    - { home: "{{ lookup('env','HOME') }}" }
+  roles:
+    - base
+    - devel

@@ -1,0 +1,3 @@
+- include: google-chrome.yml
+- include: yakuake.yml
+- include: java8.yml

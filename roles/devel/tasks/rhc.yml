@@ -1,0 +1,15 @@
+- name: install requirements for rhc
+  apt: pkg={{ item }} state=installed
+  sudo: yes
+  with_items:
+    - ruby1.9.1
+
+- name: check if rhc is already installed
+  shell: gem list rhc | grep rhc
+  register: rhc_check
+  ignore_errors: True
+
+- name: install rhc
+  shell: gem install rhc
+  when: rhc_check|failed
+  sudo: yes
