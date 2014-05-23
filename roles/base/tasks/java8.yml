@@ -2,7 +2,7 @@
   apt_repository: repo='ppa:webupd8team/java' state=present update_cache=yes
   sudo: yes
 
-- name: install java
+- name: install java8
   apt: pkg={{ item }} state=installed
   sudo: yes
   with_items:

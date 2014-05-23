@@ -1,2 +1,3 @@
 - include: zsh.yml
+- include: homesick.yml
 - include: rhc.yml

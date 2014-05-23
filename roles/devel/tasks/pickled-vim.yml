@@ -1,0 +1,11 @@
+- name: install dependencies for pickled-vim
+  apt: pkg={{ item }} state=installed
+  sudo: yes
+  with_items:
+    - exuberant-ctags
+
+- name: clone pickled-vim repo
+  shell: homesick clone git://github.com/leandrocosta/pickled-vim.git
+
+- name: link dotfiles for pickled-vim
+  shell: homesick symlink pickled-vim
