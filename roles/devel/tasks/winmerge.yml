@@ -1,0 +1,18 @@
+- name: check if WinMerge is already installed
+  stat: path="{{ home }}/.wine/drive_c/Program Files/WinMerge"
+  register: winmerge_path
+
+- name: install requirements for WinMerge
+  apt: pkg={{ item }} state=installed
+  sudo: yes
+  with_items:
+    - wine
+  when: winmerge_path.stat.exists == False
+
+- name: download WinMerge
+  get_url: url=http://downloads.sourceforge.net/project/winmerge/stable/2.14.0/WinMerge-2.14.0-Setup.exe dest=/tmp/WinMerge-2.14.0-Setup.exe
+
+- name: install WinMerge
+  command: wine /tmp/WinMerge-2.14.0-Setup.exe
+  when: winmerge_path.stat.exists == False
+  ignore_errors: True

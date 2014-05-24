@@ -1,4 +1,4 @@
-- name: check if SourceCodPro is already installed
+- name: check if SourceCodePro is already installed
   shell: fc-list | grep "Source Code Pro"
   register: sourcecodepro_check
   ignore_errors: True
