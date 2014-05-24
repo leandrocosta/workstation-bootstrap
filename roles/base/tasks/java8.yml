@@ -1,9 +1,15 @@
-- name: add repository
+- name: check if java8 is already installed
+  stat: path=/usr/lib/jvm/java-8-oracle
+  register: java8_path
+
+- name: add repository for java8
   apt_repository: repo='ppa:webupd8team/java' state=present update_cache=yes
   sudo: yes
+  when: java8_path.stat.exists == False
 
 - name: install java8
   apt: pkg={{ item }} state=installed
   sudo: yes
   with_items:
     - oracle-java8-installer
+  when: java8_path.stat.exists == False

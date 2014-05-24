@@ -1,3 +1,4 @@
 - include: zsh.yml
 - include: homesick.yml
+- include: source-code-pro.yml
 - include: rhc.yml

@@ -1,0 +1,16 @@
+- name: check if SourceCodPro is already installed
+  shell: fc-list | grep "Source Code Pro"
+  register: sourcecodepro_check
+  ignore_errors: True
+
+- name: install SourceCodePro
+  shell: 'curl -L https://gist.github.com/lucasdavila/3875946/raw/f62c8a26ad6648b00cd379704617d0b61338f59f/install_source_code_pro.sh | sh'
+  when: sourcecodepro_check|failed
+
+- name: remove SourceCodePro_FontsOnly-1.010.zip
+  file: path=SourceCodePro_FontsOnly-1.010.zip state=absent
+  when: sourcecodepro_check|failed
+
+- name: remove SourceCodePro_FontsOnly-1.010
+  file: path=SourceCodePro_FontsOnly-1.010 state=absent
+  when: sourcecodepro_check|failed
