@@ -1,0 +1,16 @@
+- name: check if topojson is already installed
+  shell: topojson --version
+  register: topojson_check
+  ignore_errors: True
+
+- name: install requirements for topojson
+  apt: pkg={{ item }} state=installed
+  sudo: yes
+  with_items:
+    - libstdc++6-4.7-dev # topojson needs bits/c++config.h
+    - g++-4.8-multilib # topojson needs bits/c++config.h
+    - gdal-bin
+  when: topojson_check|failed
+
+- include: npm-packages.yml pkg='topojson'
+  when: topojson_check|failed

@@ -1,0 +1,9 @@
+- name: check if {{ pkg }} is already installed
+  shell: npm -g list {{ pkg }}
+  register: pkg_exists
+  ignore_errors: True
+
+- name: install {{ pkg }}
+  shell: npm install -g {{ pkg }}
+  when: pkg_exists.rc !=0
+  sudo: yes

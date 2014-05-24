@@ -4,3 +4,4 @@
 - include: source-code-pro.yml
 - include: winmerge.yml
 - include: rhc.yml
+- include: topojson.yml
