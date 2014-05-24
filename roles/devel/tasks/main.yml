@@ -1,5 +1,6 @@
 - include: zsh.yml
 - include: homesick.yml
+- include: sublime3.yml
 - include: source-code-pro.yml
 - include: winmerge.yml
 - include: rhc.yml

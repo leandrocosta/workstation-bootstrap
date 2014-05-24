@@ -11,6 +11,7 @@
 
 - name: download WinMerge
   get_url: url=http://downloads.sourceforge.net/project/winmerge/stable/2.14.0/WinMerge-2.14.0-Setup.exe dest=/tmp/WinMerge-2.14.0-Setup.exe
+  when: winmerge_path.stat.exists == False
 
 - name: install WinMerge
   command: wine /tmp/WinMerge-2.14.0-Setup.exe

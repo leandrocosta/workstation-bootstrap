@@ -1,0 +1,13 @@
+- name: check if sublime3 is already installed
+  shell: subl -v | grep 'Sublime Text Build'
+  register: sublime_check
+
+- name: add repository for sublime3
+  apt_repository: repo='ppa:webupd8team/sublime-text-3'
+  sudo: yes
+  when: sublime_check|failed
+
+- name: install sublime3
+  apt: pkg=sublime-text-installer state=installed
+  sudo: yes
+  when: sublime_check|failed
