@@ -1,3 +1,13 @@
+- name: check if gdal is already installed
+  shell: ogr2ogr --version
+  register: ogr2ogr_check
+  ignore_errors: True
+
+- name: install gdal-bin for topojson
+  apt: pkg=gdal-bin state=installed
+  sudo: yes
+  when: ogr2ogr_check|failed
+
 - name: check if topojson is already installed
   shell: topojson --version
   register: topojson_check
@@ -10,7 +20,7 @@
     - libstdc++6-4.7-dev # topojson needs bits/c++config.h
     - g++-4.8-multilib # topojson needs bits/c++config.h
     - gdal-bin
-  when: topojson_check|failed
+  when: topojson_check|failed and ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
 
 - include: npm-packages.yml pkg='topojson'
   when: topojson_check|failed

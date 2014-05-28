@@ -1,3 +1,5 @@
+- include: nodejs.yml
+
 - name: check if {{ pkg }} is already installed
   shell: npm -g list {{ pkg }}
   register: pkg_exists
