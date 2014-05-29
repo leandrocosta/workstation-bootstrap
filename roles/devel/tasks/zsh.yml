@@ -1,8 +1,6 @@
 - name: install zsh
-  apt: pkg={{ item }} state=installed
+  apt: pkg=zsh state=installed
   sudo: yes
-  with_items:
-    - zsh
 
 - name: check if oh-my-zsh is already installed
   stat: path={{ home }}/.oh-my-zsh
