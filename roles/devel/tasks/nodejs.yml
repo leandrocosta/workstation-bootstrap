@@ -12,3 +12,17 @@
   apt: pkg=nodejs state=installed
   sudo: yes
   when: nodejs_check|failed
+
+#- include: npm-packages.yml pkg=bower
+#- include: npm-packages.yml pkg=grunt-cli
+#- include: npm-packages.yml pkg=grunt-init
+#- include: npm-packages.yml pkg=npm-check-updates
+
+- name: install Node.js's global packages
+  npm: name={{ item }} global=yes
+  with_items:
+    - bower
+    - grunt-cli
+    - grunt-init
+    - npm-check-updates
+  sudo: yes

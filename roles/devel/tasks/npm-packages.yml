@@ -1,11 +1,12 @@
-- include: nodejs.yml
+- name: ensure we have npm for {{ pkg }}
+  shell: npm --version
 
 - name: check if {{ pkg }} is already installed
-  shell: npm -g list {{ pkg }}
-  register: pkg_exists
+  shell: npm -g list {{ pkg }} | grep {{ pkg }}
+  register: pkg_check
   ignore_errors: True
 
 - name: install {{ pkg }}
   shell: npm install -g {{ pkg }}
-  when: pkg_exists.rc !=0
+  when: pkg_check|failed
   sudo: yes
