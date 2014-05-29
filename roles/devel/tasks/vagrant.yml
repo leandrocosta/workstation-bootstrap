@@ -1,0 +1,6 @@
+- name: install vagrant and virtualbox
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - virtualbox
+    - vagrant
+  sudo: yes
