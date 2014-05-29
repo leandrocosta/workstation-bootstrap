@@ -1,0 +1,13 @@
+- name: check if Google Desktop is already installed
+  shell: dpkg -l | grep google-desktop
+  register: gdesktop_check
+  ignore_errors: True
+
+- name: download Google Desktop
+  get_url: url=http://ufpr.dl.sourceforge.net/project/super-os/repo/pool/main/g/google-desktop-linux/google-desktop-linux_1.2.0.0088_i386.deb dest=/tmp/google-desktop-linux_1.2.0.0088_i386.deb
+  when: gdesktop_check|failed
+
+- name: install Google Desktop
+  shell: dpkg -i /tmp/google-desktop-linux_1.2.0.0088_i386.deb
+  sudo: yes
+  when: gdesktop_check|failed
