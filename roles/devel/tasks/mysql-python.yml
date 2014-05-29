@@ -1,0 +1,10 @@
+- name: install dependencies for MySQL-python
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - python-dev
+    - libmysqlclient-dev
+  sudo: yes
+
+- name: install MySQL-python
+  pip: name=MySQL-python version=1.2.5
+  sudo: yes

@@ -4,4 +4,6 @@
 - include: source-code-pro.yml
 - include: winmerge.yml
 - include: rhc.yml
+- include: nodejs.yml
 - include: topojson.yml
+- include: mysql-python.yml
