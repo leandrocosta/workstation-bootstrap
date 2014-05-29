@@ -1,13 +1,23 @@
-- name: check if sublime3 is already installed
+- name: check if Sublime Text 3 is already installed
   shell: subl -v | grep 'Sublime Text Build'
   register: sublime_check
+  ignore_errors: True
 
-- name: add repository for sublime3
+- name: add repository for Sublime Text 3
   apt_repository: repo='ppa:webupd8team/sublime-text-3'
   sudo: yes
   when: sublime_check|failed
 
-- name: install sublime3
+- name: install Sublime Text 3
   apt: pkg=sublime-text-installer state=installed
   sudo: yes
   when: sublime_check|failed
+
+- name: check if Sublime Text 3 is already in sidebar's favorites
+  shell: gsettings get com.canonical.Unity.Launcher favorites | grep sublime-text\.desktop
+  register: sublfav_check
+  ignore_errors: True
+
+- name: put Sublime Text 3 in sidebar's favorites
+  shell: gsettings set com.canonical.Unity.Launcher favorites "`gsettings get com.canonical.Unity.Launcher favorites | sed -e \"s/\[/\['sublime-text\.desktop', /g\"`"
+  when: sublfav_check|failed
