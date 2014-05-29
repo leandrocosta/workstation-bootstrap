@@ -1,8 +1,13 @@
-- name: install yakuake
-  apt: pkg={{ item }} state=installed
-  sudo: yes
-  with_items:
-    - yakuake
+- name: check if Yakuake is already installed
+  shell: dpkg -l | grep yakuake
+  register: yakuake_check
+  ignore_errors: True
 
-- name: put yakuake into Session Startup Apps
+- name: install Yakuake
+  apt: pkg=yakuake state=installed
+  sudo: yes
+  when: yakuake_check|failed
+
+- name: put Yakuake into Session Startup Apps
   copy: src=yakuake.desktop dest="{{ home }}/.config/autostart/yakuake.desktop"
+  when: yakuake_check|failed
