@@ -1,8 +1,14 @@
+- name: check if Node.js is already installed
+  shell: node --version
+  register: nodejs_check
+  ignore_errors: True
+
 - name: install repository for Node.js
   apt_repository: repo='ppa:chris-lea/node.js' state=present update_cache=yes
   sudo: yes
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise'
+  when: nodejs_check|failed and ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise'
 
 - name: install Node.js
   apt: pkg=nodejs state=installed
   sudo: yes
+  when: nodejs_check|failed
