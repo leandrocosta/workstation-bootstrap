@@ -8,6 +8,10 @@
   sudo: yes
   when: yakuake_check|failed
 
+- name: ensure we have ~/.config/autostart/ for Yakuake
+  file: dest="{{ home }}/.config/autostart/" mode=755 state=directory
+  when: yakuake_check|failed
+
 - name: put Yakuake into Session Startup Apps
   copy: src=yakuake.desktop dest="{{ home }}/.config/autostart/yakuake.desktop"
   when: yakuake_check|failed
