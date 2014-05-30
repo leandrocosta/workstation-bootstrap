@@ -21,8 +21,10 @@
 - name: install Node.js's global packages
   npm: name={{ item }} global=yes
   with_items:
+    - yo
     - bower
     - grunt-cli
     - grunt-init
     - npm-check-updates
+    - nodemon
   sudo: yes
