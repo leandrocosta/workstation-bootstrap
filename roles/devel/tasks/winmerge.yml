@@ -1,6 +1,12 @@
 - name: check if WinMerge is already installed
   stat: path="{{ home }}/.wine/drive_c/Program Files/WinMerge"
   register: winmerge_path
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
+
+- name: check if WinMerge is already installed
+  stat: path="{{ home }}/.local/share/applications/wine-extension-winmerge.desktop"
+  register: winmerge_path
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise'
 
 - name: install requirements for WinMerge
   apt: pkg={{ item }} state=installed
