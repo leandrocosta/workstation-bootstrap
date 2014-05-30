@@ -1,0 +1,8 @@
+- name: install command-line tools
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - tree
+    - htop
+    - curl
+    - ack-grep
+  sudo: yes
