@@ -1,0 +1,23 @@
+- name: check if Pentaho Data Integration is already installed
+  stat: path="{{ home }}/opt/pentaho/data-integration"
+  register: pdi_path
+
+- name: download Pentaho Data Integration
+  get_url: url=http://downloads.sourceforge.net/project/pentaho/Data%20Integration/5.0.1-stable/pdi-ce-5.0.1.A-stable.zip dest=/tmp/pdi-ce-5.0.1.A-stable.zip
+  when: pdi_path.stat.exists == False
+
+- name: unpack Pentaho Data Integration
+  unarchive: src=/tmp/pdi-ce-5.0.1.A-stable.zip dest="{{ home }}/opt/pentaho"
+  when: pdi_path.stat.exists == False
+
+- name: check if MySQL connector is already installed
+  stat: path="{{ home }}/opt/pentaho/data-integration/lib/mysql-connector-java-5.1.30-bin.jar"
+  register: mysqlconn_path
+
+- name: download MySQL connector
+  get_url: url=http://mirror.cogentco.com/pub/mysql/Connector-J/mysql-connector-java-5.1.30.zip dest=/tmp/mysql-connector-java-5.1.30.zip
+  when: mysqlconn_path.stat.exists == False
+
+- name: unpack MySQL connector
+  shell: unzip -j /tmp/mysql-connector-java-5.1.30.zip -d "{{ home }}/opt/pentaho/data-integration/lib/" mysql-connector-java-5.1.30/mysql-connector-java-5.1.30-bin.jar
+  when: mysqlconn_path.stat.exists == False
