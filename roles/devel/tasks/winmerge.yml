@@ -4,8 +4,8 @@
   register: winmerge_check
 #  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
 
-- name: show winmerge_check register
-  debug: msg={{ winmerge_check.stat.exists }}
+#- name: show winmerge_check register
+#  debug: msg={{ winmerge_check.stat.exists }}
 
 #- name: check if WinMerge is already installed
 #  stat: path="{{ home }}/.local/share/applications/wine-extension-winmerge.desktop"
