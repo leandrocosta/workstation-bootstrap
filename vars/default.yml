@@ -1,0 +1,1 @@
+winmerge_path: "{{ home }}/.wine/drive_c/Program Files/WinMerge"

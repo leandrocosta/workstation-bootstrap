@@ -1,6 +1,8 @@
 - hosts: localhost
   vars:
     - { home: "{{ lookup('env','HOME') }}" }
+  vars_files:
+    - [ "vars/{{ ansible_distribution_release }}.yml", "vars/default.yml" ]
   roles:
     - base
     - devel
