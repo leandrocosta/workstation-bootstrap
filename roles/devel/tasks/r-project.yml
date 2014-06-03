@@ -1,0 +1,16 @@
+- name: check if R is already installed
+  shell: R --version
+  register: r_check
+  ignore_errors: True
+
+# http://cran.r-project.org/bin/linux/ubuntu/README
+
+- name: add repository for R
+  lineinfile: dest=/etc/apt/sources.list.d/r-project.list create=yes regexp="^deb" line="deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu {{ ansible_distribution_release }}/"
+  sudo: yes
+  when: r_check|failed
+
+- name: install R
+  apt: pkg=r-base state=installed
+  sudo: yes
+  when: r_check|failed
