@@ -1,0 +1,5 @@
+- name: download RapidMiner
+  get_url: url=http://downloads.sourceforge.net/project/rapidminer/1.%20RapidMiner/5.3/rapidminer-5.3.013.zip dest=/tmp/rapidminer-5.3.013.zip
+
+- name: unpack RapidMiner
+  shell: unzip /tmp/rapidminer-5.3.013.zip -d ~/opt/
