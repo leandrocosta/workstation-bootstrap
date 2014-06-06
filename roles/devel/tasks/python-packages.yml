@@ -1,0 +1,6 @@
+- name: install Python packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - python-pastescript
+  sudo: yes
+
