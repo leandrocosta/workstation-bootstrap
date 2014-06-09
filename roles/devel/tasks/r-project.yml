@@ -7,31 +7,41 @@
 
 - name: download key for R's repository
   shell: gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
+  when: r_check|failed
   sudo: yes
 
 - name: install key for R's repository
   shell: sudo gpg -a --export E084DAB9 | sudo apt-key add -
+  when: r_check|failed
   sudo: yes
 
 - name: add repository for R
   lineinfile: dest=/etc/apt/sources.list.d/r-project.list create=yes regexp="^deb" line="deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu {{ ansible_distribution_release }}/"
-  sudo: yes
   when: r_check|failed
+  sudo: yes
 
 - name: install R
   apt: pkg=r-base state=installed update_cache=yes
-  sudo: yes
   when: r_check|failed
+  sudo: yes
+
+- name: check if RStudio is already installed
+  shell: dpkg -l | grep rstudio
+  register: rstudio_check
+  ignore_errors: True
 
 - name: download RStudio
   get_url: url="http://download1.rstudio.org/rstudio-0.98.507-{{ ansible_architecture }}.deb" dest="/tmp/rstudio-0.98.507-{{ ansible_architecture }}.deb"
+  when: rstudio_check|failed
 
 - name: install dependencies for RStudio
   apt: pkg=libjpeg62 state=installed
+  when: rstudio_check|failed
   sudo: yes
 
 - name: install RStudio
   shell: dpkg -i "/tmp/rstudio-0.98.507-{{ ansible_architecture }}.deb"
+  when: rstudio_check|failed
   sudo: yes
 
 - name: check if RStudio is already in sidebar's favorites
