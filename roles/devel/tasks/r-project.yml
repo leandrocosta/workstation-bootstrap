@@ -30,19 +30,16 @@
   register: rstudio_check
   ignore_errors: True
 
-- name: download RStudio
-  get_url: url="http://download1.rstudio.org/rstudio-0.98.507-{{ ansible_architecture }}.deb" dest="/tmp/rstudio-0.98.507-{{ ansible_architecture }}.deb"
-  when: rstudio_check|failed
-
 - name: install dependencies for RStudio
   apt: pkg=libjpeg62 state=installed
   when: rstudio_check|failed
   sudo: yes
 
-- name: install RStudio
-  shell: dpkg -i "/tmp/rstudio-0.98.507-{{ ansible_architecture }}.deb"
-  when: rstudio_check|failed
-  sudo: yes
+- include: r-studio_i386.yml
+  when: rstudio_check|failed and ansible_architecture == "i386"
+
+- include: r-studio_amd64.yml
+  when: rstudio_check|failed and ansible_architecture == "amd64"
 
 - name: check if RStudio is already in sidebar's favorites
   shell: gsettings get com.canonical.Unity.Launcher favorites | grep rstudio\.desktop

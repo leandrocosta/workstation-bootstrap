@@ -1,0 +1,8 @@
+- name: download RStudio
+  get_url: url=http://download1.rstudio.org/rstudio-0.98.507-amd64.deb dest=/tmp/rstudio-0.98.507-amd64.deb
+  when: rstudio_check|failed
+
+- name: install RStudio
+  shell: dpkg -i /tmp/rstudio-0.98.507-amd64.deb
+  when: rstudio_check|failed
+  sudo: yes
