@@ -39,13 +39,7 @@
   when: rstudio_check|failed and ansible_architecture == "i386"
 
 - include: r-studio_amd64.yml
-  when: rstudio_check|failed and ansible_architecture == "amd64"
+  when: rstudio_check|failed and ansible_architecture == "x86_64"
 
-- name: check if RStudio is already in sidebar's favorites
-  shell: gsettings get com.canonical.Unity.Launcher favorites | grep rstudio\.desktop
-  register: rstfav_check
-  ignore_errors: True
-
-- name: put RStudio in sidebar's favorites
-  shell: gsettings set com.canonical.Unity.Launcher favorites "`gsettings get com.canonical.Unity.Launcher favorites | sed -e \"s/\[/\['rstudio\.desktop', /g\"`"
-  when: rstfav_check|failed
+- include: favorites_trusty.yml item="application:\/\/rstudio\.desktop"
+  when: ansible_distribution_release == "trusty"

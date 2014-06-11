@@ -15,4 +15,5 @@
 - include: topojson.yml
 - include: mysql-python.yml
 - include: python-packages.yml
+- include: r-project.yml
 - include: music-for-programming.yml
