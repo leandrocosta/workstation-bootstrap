@@ -41,5 +41,8 @@
 - include: r-studio_amd64.yml
   when: rstudio_check|failed and ansible_architecture == "x86_64"
 
-- include: favorites_trusty.yml item="application:\/\/rstudio\.desktop"
+- include: favorites.yml item="application:\/\/rstudio\.desktop"
   when: ansible_distribution_release == "trusty"
+
+- include: favorites.yml item="rstudio\.desktop"
+  when: ansible_distribution_release == "precise"
