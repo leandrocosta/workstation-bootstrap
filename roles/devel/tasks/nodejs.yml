@@ -27,5 +27,6 @@
     - grunt-init
     - npm-check-updates
     - nodemon
+    - jshint
     - uglify-js
   sudo: yes

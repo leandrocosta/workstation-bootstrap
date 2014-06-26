@@ -1,0 +1,10 @@
+- name: add repository for SyncDrive
+  apt_repository: repo={{ item }}
+  sudo: yes
+  with_items:
+    - ppa:nemh/gambas3
+    - ppa:noobslab/pear-apps
+
+- name: install SyncDrive
+  apt: name=syncdrive state=present update_cache=yes
+  sudo: yes
