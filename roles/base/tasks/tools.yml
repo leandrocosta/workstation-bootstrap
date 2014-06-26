@@ -5,4 +5,5 @@
     - htop
     - curl
     - ack-grep
+    - wavemon
   sudo: yes
