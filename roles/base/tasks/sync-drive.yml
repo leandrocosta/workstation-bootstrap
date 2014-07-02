@@ -1,10 +1,17 @@
+- name: check if SyncDrive is already installed
+  shell: dpkg -l | grep syncdrive
+  register: syncdrive_check
+  ignore_errors: True
+
 - name: add repository for SyncDrive
   apt_repository: repo={{ item }}
   sudo: yes
   with_items:
     - ppa:nemh/gambas3
     - ppa:noobslab/pear-apps
+  when: syncdrive_check|failed
 
 - name: install SyncDrive
   apt: name=syncdrive state=present update_cache=yes
   sudo: yes
+  when: syncdrive_check|failed
