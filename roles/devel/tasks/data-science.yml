@@ -11,3 +11,10 @@
   #get_url: url=http://ufpr.dl.sourceforge.net/project/weka/weka-3-6/3.6.11/weka-3-6-11.zip dest=/tmp/weka-3.6.11.zip
   shell: wget http://prdownloads.sourceforge.net/weka/weka-3-6-11.zip -O /tmp/weka-3.6.11.zip
   when: weka_path.stat.exists == False
+
+- name: install Octave
+  apt: pkg=octave3.2 state=installed
+  sudo: yes
+
+- include: favorites.yml item="octave3\.2\.desktop"
+  when: ansible_distribution_release == "precise"
