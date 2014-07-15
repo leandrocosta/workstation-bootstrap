@@ -1,0 +1,2 @@
+- name: download Talend
+  get_url: url=http://talend.dreamhosters.com/tosbd/release/V5.5.1/TOS_BD-r118616-V5.5.1.zip dest=/tmp/TOS_BD-r118616-V5.5.1.zip
