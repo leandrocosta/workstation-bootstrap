@@ -1,8 +1,9 @@
 - name: install dependencies for pickled-vim
-  apt: pkg={{ item }} state=installed
+  apt: pkg=exuberant-ctags state=installed
   sudo: yes
-  with_items:
-    - exuberant-ctags
+
+- name: use https:// instead of git://
+  shell: git config --global url."https://".insteadOf git://
 
 - name: clone pickled-vim repo
   shell: homesick clone git://github.com/leandrocosta/pickled-vim.git
