@@ -1,10 +1,4 @@
-- name: install devel tools
-  apt: pkg={{ item }} state=installed
-  with_items:
-    - git
-    - mercurial
-  sudo: yes
-
+- include: tools.yml
 - include: zsh.yml
 - include: homesick.yml
 - include: sublime3.yml
