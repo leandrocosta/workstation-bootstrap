@@ -7,6 +7,9 @@
   sudo: yes
   when: java8_path.stat.exists == False
 
+- name: automatically select the Oracle License
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+
 - name: install java8
   apt: pkg={{ item }} state=installed
   sudo: yes
