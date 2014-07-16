@@ -15,7 +15,13 @@
   sudo: yes
   when: gchrome_check|failed
 
-- name: install google-chrome
+- name: install Google Chrome
   apt: pkg=google-chrome-stable state=installed
   sudo: yes
   when: gchrome_check|failed
+
+- include: favorites.yml item="application:\/\/google-chrome\.desktop"
+  when: ansible_distribution_release == "trusty"
+
+- include: favorites.yml item="google-chrome\.desktop"
+  when: ansible_distribution_release == "precise"

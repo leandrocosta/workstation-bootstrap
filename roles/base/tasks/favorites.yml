@@ -1,0 +1,8 @@
+- name: check if {{ item }} is already in sidebar's favorites
+  shell: gsettings get com.canonical.Unity.Launcher favorites | grep {{ item }}
+  register: rstfav_check
+  ignore_errors: True
+
+- name: put {{ item }} in sidebar's favorites
+  shell: gsettings set com.canonical.Unity.Launcher favorites "`gsettings get com.canonical.Unity.Launcher favorites | sed -e \"s/\[/\['{{ item }}', /g\"`"
+  when: rstfav_check|failed
