@@ -1,4 +1,4 @@
-- name: install command-line tools
+- name: install base tools
   apt: pkg={{ item }} state=installed
   with_items:
     - tree
