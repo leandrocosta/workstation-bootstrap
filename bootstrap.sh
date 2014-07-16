@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo 'Before anything we need ansible...'
-sudo apt-get -q=2 install python-pip
+sudo apt-get -q=2 install python-pip python-dev
 sudo pip -q install ansible
 
 echo 'Now it gets easy ;)'
