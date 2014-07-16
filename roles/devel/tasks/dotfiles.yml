@@ -1,0 +1,5 @@
+- name: clone dotfiles repo
+  shell: homesick clone git://github.com/leandrocosta/dotfiles.git
+
+- name: link dotfiles for dotfiles
+  shell: homesick symlink dotfiles
