@@ -15,3 +15,5 @@
 - name: put Yakuake into Session Startup Apps
   copy: src=yakuake.desktop dest="{{ home }}/.config/autostart/yakuake.desktop"
   when: yakuake_check|failed
+
+# TODO: add ~/.kde/share/config/yakuakerc to dotfiles
