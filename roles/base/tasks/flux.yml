@@ -1,0 +1,7 @@
+- name: add repository for F.lux
+  apt_repository: repo=ppa:kilian/f.lux
+  sudo: yes
+
+- name: install F.lux
+  apt: name=fluxgui state=present update_cache=yes
+  sudo: yes
