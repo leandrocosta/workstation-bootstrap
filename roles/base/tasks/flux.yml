@@ -1,7 +1,17 @@
+- name: check if F.lux is already installed
+  shell: dpkg -l | grep fluxgui
+  register: flux_check
+  ignore_errors: True
+
 - name: add repository for F.lux
   apt_repository: repo=ppa:kilian/f.lux
   sudo: yes
+  when: flux_check|failed
 
 - name: install F.lux
   apt: name=fluxgui state=present update_cache=yes
   sudo: yes
+  when: flux_check|failed
+
+#- name: configure F.lux
+#  shell: "xflux -l -19.9192 -g -43.9386 -k 5000"
