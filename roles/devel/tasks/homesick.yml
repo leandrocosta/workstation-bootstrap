@@ -1,8 +1,6 @@
 - name: install dependencies for homesick
-  apt: pkg={{ item }} state=installed
+  apt: pkg=ruby1.9.1 state=installed
   sudo: yes
-  with_items:
-    - ruby1.9.1
 
 - name: check if rhc is already installed
   shell: gem list homesick | grep homesick
@@ -15,4 +13,6 @@
   sudo: yes
 
 - include: pickled-vim.yml
-  when: homesick_check|failed
+#  when: homesick_check|failed
+#
+- include: dotfiles.yml
