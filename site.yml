@@ -2,7 +2,8 @@
   vars:
     - { home: "{{ lookup('env','HOME') }}" }
   vars_files:
-    - [ "vars/{{ lookup('env', 'LANGUAGE') }}.yml", "vars/default.yml" ]
+#    - [ "vars/{{ lookup('env', 'LANGUAGE') }}.yml", "vars/default.yml" ]
+    - [ "vars/default.yml" ]
   roles:
     - base
     - devel
