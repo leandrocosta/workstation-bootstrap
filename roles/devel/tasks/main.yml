@@ -10,4 +10,5 @@
 - include: mysql-python.yml
 - include: python-packages.yml
 - include: r-project.yml
+- include: data-science.yml
 - include: music-for-programming.yml
