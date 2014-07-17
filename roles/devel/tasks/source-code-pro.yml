@@ -3,14 +3,15 @@
   register: sourcecodepro_check
   ignore_errors: True
 
-- name: install SourceCodePro
-  shell: 'curl -L https://gist.github.com/lucasdavila/3875946/raw/f62c8a26ad6648b00cd379704617d0b61338f59f/install_source_code_pro.sh | sh'
+- name: download SourceCodePro
+  get_url: url=http://downloads.sourceforge.net/project/sourcecodepro.adobe/SourceCodePro_FontsOnly-1.017.zip dest=/tmp/SourceCodePro_FontsOnly-1.017.zip
   when: sourcecodepro_check|failed
 
-- name: remove SourceCodePro_FontsOnly-1.010.zip
-  file: path=SourceCodePro_FontsOnly-1.010.zip state=absent
+- name: unpack SourceCodePro
+  shell: unzip -o -j /tmp/SourceCodePro_FontsOnly-1.017.zip "SourceCodePro_FontsOnly-1.017/OTF/*.otf" -d "{{ home }}/.fonts/"
   when: sourcecodepro_check|failed
 
-- name: remove SourceCodePro_FontsOnly-1.010
-  file: path=SourceCodePro_FontsOnly-1.010 state=absent
+- name: update font cache
+  shell: fc-cache -f -v
+  sudo: yes
   when: sourcecodepro_check|failed
