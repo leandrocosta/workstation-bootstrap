@@ -1,0 +1,17 @@
+- include: favorites.yml item="application:\/\/libreoffice-writer\.desktop"
+  when: ansible_distribution_release == "trusty"
+
+- include: favorites-remove.yml item="libreoffice-writer\.desktop"
+  when: ansible_distribution_release == "precise"
+
+- include: favorites.yml item="application:\/\/libreoffice-calc\.desktop"
+  when: ansible_distribution_release == "trusty"
+
+- include: favorites-remove.yml item="libreoffice-calc\.desktop"
+  when: ansible_distribution_release == "precise"
+
+- include: favorites.yml item="application:\/\/libreoffice-impress\.desktop"
+  when: ansible_distribution_release == "trusty"
+
+- include: favorites-remove.yml item="libreoffice-impress\.desktop"
+  when: ansible_distribution_release == "precise"

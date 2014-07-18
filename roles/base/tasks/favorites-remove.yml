@@ -1,0 +1,5 @@
+- name: remove {{ item }} from sidebar's favorites
+  shell: gsettings set com.canonical.Unity.Launcher favorites "`gsettings get com.canonical.Unity.Launcher favorites | sed -e \"s/'{{ item }}', //g\"`"
+
+- name: remove {{ item }} from sidebar's favorites when it is in the last position
+  shell: gsettings set com.canonical.Unity.Launcher favorites "`gsettings get com.canonical.Unity.Launcher favorites | sed -e \"s/, '{{ item }}'//g\"`"
