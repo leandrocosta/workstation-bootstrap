@@ -15,3 +15,9 @@
   apt: name=syncdrive state=present update_cache=yes
   sudo: yes
   when: syncdrive_check|failed
+
+# http://forums.linuxmint.com/viewtopic.php?f=47&t=157850#p821391
+
+- name: replace pear-news.fr by syncdrive.fr in /usr/bin/syncdrive
+  shell: sed -b -e 's/pear-news\.fr/syncdrive\.fr/g' /usr/bin/syncdrive >/tmp/newsyncdrive && mv /tmp/newsyncdrive /usr/bin/syncdrive && chmod 755 /usr/bin/syncdrive
+  sudo: yes
