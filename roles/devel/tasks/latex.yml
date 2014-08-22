@@ -1,0 +1,6 @@
+- name: install vagrant and virtualbox
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - texlive-latex-extra
+    - texlive-fonts-recommended
+  sudo: yes
