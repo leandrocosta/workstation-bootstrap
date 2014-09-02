@@ -1,0 +1,3 @@
+- name: install GPSBabel
+  apt: pkg=gpsbabel-gui state=installed
+  sudo: yes
