@@ -2,19 +2,28 @@
   apt: pkg=weka state=installed
   sudo: yes
 
-- name: check if Weka was already installed
-  stat: path=/tmp/weka-3.6.11.zip
-  register: weka_path
-
-- name: download Weka
-  #get_url: url=http://prdownloads.sourceforge.net/weka/weka-3-6-11.zip dest=/tmp/weka-3.6.11.zip
-  #get_url: url=http://ufpr.dl.sourceforge.net/project/weka/weka-3-6/3.6.11/weka-3-6-11.zip dest=/tmp/weka-3.6.11.zip
-  shell: wget http://prdownloads.sourceforge.net/weka/weka-3-6-11.zip -O /tmp/weka-3.6.11.zip
-  when: weka_path.stat.exists == False
+#- name: check if Weka was already installed
+#  stat: path=/tmp/weka-3.6.11.zip
+#  register: weka_path
+#
+#- name: download Weka
+#  #get_url: url=http://prdownloads.sourceforge.net/weka/weka-3-6-11.zip dest=/tmp/weka-3.6.11.zip
+#  #get_url: url=http://ufpr.dl.sourceforge.net/project/weka/weka-3-6/3.6.11/weka-3-6-11.zip dest=/tmp/weka-3.6.11.zip
+#  shell: wget http://prdownloads.sourceforge.net/weka/weka-3-6-11.zip -O /tmp/weka-3.6.11.zip
+#  when: weka_path.stat.exists == False
 
 - name: install Octave
   apt: pkg=octave3.2 state=installed
+  when: ansible_distribution_release == "precise"
   sudo: yes
 
-- include: favorites.yml item="octave3\.2\.desktop"
+- include: ../../base/tasks/favorites.yml item="octave3\.2\.desktop"
   when: ansible_distribution_release == "precise"
+
+- name: install Octave
+  apt: pkg=octave state=installed
+  when: ansible_distribution_release == "trusty"
+  sudo: yes
+
+- include: ../../base/tasks/favorites.yml item="application:\/\/octave\.desktop"
+  when: ansible_distribution_release == "trusty"
