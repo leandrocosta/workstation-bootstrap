@@ -1,6 +1,7 @@
 - name: install base tools
   apt: pkg={{ item }} state=installed
   with_items:
+    - vim
     - tree
     - htop
     - curl
