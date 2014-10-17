@@ -16,7 +16,7 @@
   when: gchrome_check|failed
 
 - name: install Google Chrome
-  apt: pkg=google-chrome-stable state=installed
+  apt: pkg=google-chrome-stable state=installed update_cache=yes
   sudo: yes
   when: gchrome_check|failed
 
