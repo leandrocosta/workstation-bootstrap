@@ -1,5 +1,5 @@
 - name: check if Node.js is already installed
-  shell: node --version
+  shell: nodejs --version
   register: nodejs_check
   ignore_errors: True
 
@@ -8,8 +8,12 @@
   sudo: yes
   when: nodejs_check|failed and ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise'
 
-- name: install Node.js
-  apt: pkg=nodejs state=installed
+- name: install Node.js and npm
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - nodejs
+    - nodejs-legacy
+    - npm
   sudo: yes
   when: nodejs_check|failed
 
