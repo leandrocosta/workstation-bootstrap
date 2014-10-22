@@ -1,0 +1,6 @@
+- name: install qBittorrent
+  apt: pkg=qbittorrent state=installed
+  sudo: yes
+
+- include: favorites.yml item="application:\/\/qBittorrent\.desktop"
+  when: ansible_distribution_release == "trusty"
