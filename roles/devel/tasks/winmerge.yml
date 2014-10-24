@@ -27,3 +27,6 @@
   command: wine /tmp/WinMerge-2.14.0-Setup.exe
   when: winmerge_check.stat.exists == False
   ignore_errors: True
+
+- include: favorites.yml item="/home/05472041678/.local/share/applications/wine/Programs/WinMerge/WinMerge.desktop"
+  when: ansible_distribution_release == "precise"
