@@ -1,0 +1,6 @@
+- name: install MusicBrainz Picard
+  apt: pkg=picard state=installed
+  sudo: yes
+
+- include: favorites.yml item="application:\/\/picard\.desktop"
+  when: ansible_distribution_release == "trusty"

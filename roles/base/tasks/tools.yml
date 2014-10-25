@@ -8,4 +8,5 @@
     - p7zip
     - ack-grep
     - wavemon
+    - mpg123
   sudo: yes
