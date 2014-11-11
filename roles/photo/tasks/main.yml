@@ -1,0 +1,8 @@
+- include: darktable.yml
+
+- name: install base tools
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - gnome-raw-thumbnailer
+    - exiv2
+  sudo: yes

@@ -5,7 +5,6 @@
 - include: java8.yml
 - include: flux.yml
 - include: qbittorrent.yml
-- include: darktable.yml
 
 - name: install Flash
   apt: pkg=flashplugin-installer state=installed

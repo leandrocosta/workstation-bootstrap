@@ -9,4 +9,5 @@
     - ack-grep
     - wavemon
     - mpg123
+    - vlc
   sudo: yes
