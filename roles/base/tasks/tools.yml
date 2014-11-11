@@ -6,6 +6,7 @@
     - htop
     - curl
     - p7zip
+    - unrar
     - ack-grep
     - wavemon
     - mpg123
