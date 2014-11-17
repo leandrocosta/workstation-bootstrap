@@ -11,4 +11,7 @@
     - wavemon
     - mpg123
     - vlc
+    - nfs-common
+    - quodlibet
+    - nautilus-dropbox
   sudo: yes
