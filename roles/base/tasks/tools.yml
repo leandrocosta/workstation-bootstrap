@@ -14,4 +14,5 @@
     - nfs-common
     - quodlibet
     - nautilus-dropbox
+    - mtpfs
   sudo: yes
