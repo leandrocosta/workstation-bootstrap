@@ -1,0 +1,6 @@
+- name: install kdenlive
+  apt: pkg=kdenlive state=installed
+  sudo: yes
+
+- include: ../../base/tasks/favorites.yml item="application:\/\/kde4-kdenlive\.desktop"
+  when: ansible_distribution_release == "trusty"
