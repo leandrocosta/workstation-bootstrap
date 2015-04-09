@@ -1,0 +1,11 @@
+- name: install repository for Grive
+  # for Ubuntu 12.04 x32
+  #apt_repository: repo='ppa:nilarimogard/webupd8' state=present update_cache=yes
+  apt_repository: repo='ppa:thefanclub/grive-tools' state=present update_cache=yes
+  sudo: yes
+
+- name: install Grive
+  # for Ubuntu 12.04 x32
+  #apt: pkg=grive state=installed
+  apt: pkg=grive-tools state=installed
+  sudo: yes

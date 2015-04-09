@@ -1,13 +1,24 @@
+- name: ensure we have "{{ home }/opt/pentaho/"
+  file: dest="{{ home }}/opt/pentaho/" mode=755 state=directory
+
+- name: check if Pentaho BI Server is already installed
+  stat: path="{{ home }}/opt/pentaho/biserver-ce"
+  register: bi_path
+
+- name: download Pentaho BI Server
+  get_url: url=http://downloads.sourceforge.net/project/pentaho/Business%20Intelligence%20Server/5.0.1-stable/biserver-ce-5.0.1-stable.zip dest=/tmp/biserver-ce-5.0.1-stable.zip
+  when: bi_path.stat.exists == False
+
+- name: unpack Pentaho BI Server
+  unarchive: src=/tmp/biserver-ce-5.0.1-stable.zip dest="{{ home }}/opt/pentaho"
+  when: bi_path.stat.exists == False
+
 - name: check if Pentaho Data Integration is already installed
   stat: path="{{ home }}/opt/pentaho/data-integration"
   register: pdi_path
 
 - name: download Pentaho Data Integration
   get_url: url=http://downloads.sourceforge.net/project/pentaho/Data%20Integration/5.0.1-stable/pdi-ce-5.0.1.A-stable.zip dest=/tmp/pdi-ce-5.0.1.A-stable.zip
-  when: pdi_path.stat.exists == False
-
-- name: ensure we have "{{ home }/opt/pentaho/"
-  file: dest="{{ home }}/opt/pentaho/" mode=755 state=directory
   when: pdi_path.stat.exists == False
 
 - name: unpack Pentaho Data Integration
@@ -22,6 +33,10 @@
   get_url: url=http://mirror.cogentco.com/pub/mysql/Connector-J/mysql-connector-java-{{ pentaho_mysql_conn_version }}.zip dest=/tmp/mysql-connector-java-{{ pentaho_mysql_conn_version }}.zip
   when: mysqlconn_path.stat.exists == False
 
-- name: unpack MySQL connector
+- name: unpack MySQL connector to Pentaho Data Integration
   shell: unzip -j /tmp/mysql-connector-java-{{ pentaho_mysql_conn_version }}.zip -d "{{ home }}/opt/pentaho/data-integration/lib/" mysql-connector-java-{{ pentaho_mysql_conn_version }}/mysql-connector-java-{{ pentaho_mysql_conn_version }}-bin.jar
   when: mysqlconn_path.stat.exists == False
+
+#- name: unpack MySQL connector to Pentaho BI Server
+#  shell: unzip -j /tmp/mysql-connector-java-{{ pentaho_mysql_conn_version }}.zip -d "{{ home }}/opt/pentaho/bi-server/tomcat/lib/" mysql-connector-java-{{ pentaho_mysql_conn_version }}/mysql-connector-java-{{ pentaho_mysql_conn_version }}-bin.jar
+#  when: mysqlconn_path.stat.exists == False
