@@ -28,5 +28,8 @@
   when: winmerge_check.stat.exists == False
   ignore_errors: True
 
+- include: favorites.yml item="application:\/\/wine-Programs-WinMerge-WinMerge\.desktop"
+  when: ansible_distribution_release == "trusty"
+
 - include: favorites.yml item="/home/05472041678/.local/share/applications/wine/Programs/WinMerge/WinMerge.desktop"
   when: ansible_distribution_release == "precise"

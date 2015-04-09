@@ -6,3 +6,8 @@
 - include: flux.yml
 - include: google-desktop.yml
 - include: sync-drive.yml
+- include: qbittorrent.yml
+
+- name: install Flash
+  apt: pkg=flashplugin-installer state=installed
+  sudo: yes
