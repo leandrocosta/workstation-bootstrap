@@ -1,1 +1,4 @@
 winmerge_path: "{{ home }}/.wine/drive_c/Program Files/WinMerge"
+
+sqldeveloper_exec: "{{ home }}/opt/sqldeveloper/sqldeveloper.sh"
+sqldeveloper_icon: "{{ home }}/opt/sqldeveloper/icon.png"
