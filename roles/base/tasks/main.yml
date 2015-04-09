@@ -1,5 +1,8 @@
+- include: sidebar.yml
 - include: tools.yml
 - include: google-chrome.yml
 - include: yakuake.yml
 - include: java8.yml
 - include: flux.yml
+- include: google-desktop.yml
+- include: sync-drive.yml
