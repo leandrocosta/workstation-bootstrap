@@ -1,0 +1,19 @@
+# http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Quick-Start/cdh5qs_yarn_pseudo.html
+
+- name: download cdh5-repository
+  get_url: url=http://archive.cloudera.com/cdh5/one-click-install/precise/amd64/cdh5-repository_1.0_all.deb dest=/tmp/cdh5-repository_1.0_all.deb
+
+- name: install cdh5-repository
+  shell: dpkg -i /tmp/cdh5-repository_1.0_all.deb
+  sudo: yes
+
+- name: download GPG Key
+  get_url: url=http://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh/archive.key dest=/tmp/archive.key
+
+- name: install GPG Key
+  shell: apt-key add /tmp/archive.key
+  sudo: yes
+
+- name: install hadoop-conf-pseudo
+  apt: pkg=hadoop-conf-pseudo state=installed update_cache=yes
+  sudo: yes

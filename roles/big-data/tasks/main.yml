@@ -1,1 +1,2 @@
-- include: talend.yml
+# - include: cdh5.yml only 64 bits
+- include: hadoop.yml

@@ -4,6 +4,8 @@
 - include: yakuake.yml
 - include: java8.yml
 - include: flux.yml
+- include: google-desktop.yml
+- include: sync-drive.yml
 - include: qbittorrent.yml
 - include: copy.yml
 
