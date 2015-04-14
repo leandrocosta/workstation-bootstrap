@@ -1,0 +1,7 @@
+- name: add repository for Copy
+  apt_repository: repo='ppa:paolorotolo/copy' state=present update_cache=yes
+  sudo: yes
+
+- name: install Copy
+  apt: pkg=copy state=installed
+  sudo: yes
