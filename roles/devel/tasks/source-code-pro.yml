@@ -4,11 +4,12 @@
   ignore_errors: True
 
 - name: download SourceCodePro
-  get_url: url=http://downloads.sourceforge.net/project/sourcecodepro.adobe/SourceCodePro_FontsOnly-1.017.zip dest=/tmp/SourceCodePro_FontsOnly-1.017.zip
+  #get_url: url=http://downloads.sourceforge.net/project/sourcecodepro.adobe/SourceCodePro_FontsOnly-1.017.zip dest=/tmp/SourceCodePro_FontsOnly-1.017.zip
+  get_url: url=https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip dest=/tmp/source-code-pro.zip
   when: sourcecodepro_check|failed
 
 - name: unpack SourceCodePro
-  shell: unzip -o -j /tmp/SourceCodePro_FontsOnly-1.017.zip "SourceCodePro_FontsOnly-1.017/OTF/*.otf" -d "{{ home }}/.fonts/"
+  shell: unzip -o -j /tmp/source-code-pro.zip "source-code-pro-2.010R-ro-1.030R-it/OTF/*.otf" -d "{{ home }}/.fonts/"
   when: sourcecodepro_check|failed
 
 - name: update font cache
