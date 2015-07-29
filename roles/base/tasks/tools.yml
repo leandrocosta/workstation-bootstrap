@@ -15,4 +15,5 @@
     - quodlibet
     - nautilus-dropbox
     - mtpfs
+    - xclip
   sudo: yes
