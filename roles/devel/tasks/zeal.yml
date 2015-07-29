@@ -1,0 +1,23 @@
+#- name: check if Zeal is already installed
+#  shell: subl -v | grep 'Sublime Text Build'
+#  register: sublime_check
+#  ignore_errors: True
+
+- name: add repository for Zeal
+  apt_repository: repo='ppa:zeal-developers/ppa'
+  sudo: yes
+#  when: sublime_check|failed
+
+- name: install Zeal
+  apt: pkg=zeal state=installed
+  sudo: yes
+#  when: sublime_check|failed
+
+#- name: check if Sublime Text 3 is already in sidebar's favorites
+#  shell: gsettings get com.canonical.Unity.Launcher favorites | grep sublime-text\.desktop
+#  register: sublfav_check
+#  ignore_errors: True
+
+#- name: put Sublime Text 3 in sidebar's favorites
+#  shell: gsettings set com.canonical.Unity.Launcher favorites "`gsettings get com.canonical.Unity.Launcher favorites | sed -e \"s/\[/\['sublime-text\.desktop', /g\"`"
+#  when: sublfav_check|failed
