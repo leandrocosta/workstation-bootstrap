@@ -5,5 +5,6 @@
     - mercurial
   sudo: yes
 
-- name: configure git
-  shell: git config --global user.name "Leandro Costa" && git config --global user.email leandro.costa@gmail.com && git config --global color.ui auto
+# unnecessary, since dotfiles has a .gitconfig file
+#- name: configure git
+#  shell: git config --global user.name "Leandro Costa" && git config --global user.email leandro.costa@gmail.com && git config --global color.ui auto
