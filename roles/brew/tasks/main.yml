@@ -1,0 +1,10 @@
+- name: install dependencies
+  apt: pkg=libwebkitgtk-1.0-0 state=installed
+  sudo: yes
+
+- name: download BeerSmith 2.2
+  get_url: url=https://s3.amazonaws.com/BeerSmith2-2/BeerSmith-2.2.12_amd64.deb dest=/tmp/BeerSmith-2.2.12_amd64.deb
+
+- name: install BeerSmith 2.2
+  shell: dpkg -i /tmp/BeerSmith-2.2.12_amd64.deb
+  sudo: yes
