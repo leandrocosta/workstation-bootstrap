@@ -6,6 +6,7 @@
     - [ "vars/default.yml" ]
   roles:
     - base
-    - photo
-    - video
-    - devel
+    #- photo
+    #- video
+    #- devel
+    #- brew

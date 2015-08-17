@@ -12,8 +12,8 @@
     - mpg123
     - vlc
     - nfs-common
-    - quodlibet
+      #- quodlibet
     - nautilus-dropbox
-    - mtpfs
+    - #mtpfs
     - xclip
   sudo: yes

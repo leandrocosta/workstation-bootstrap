@@ -3,16 +3,16 @@
 - include: homesick.yml
 - include: sublime3.yml
 - include: source-code-pro.yml
-- include: winmerge.yml
-- include: rhc.yml
+#- include: winmerge.yml
+#- include: rhc.yml
 - include: nodejs.yml
-- include: topojson.yml
-- include: mysql-python.yml
-- include: python-packages.yml
-- include: r-project.yml
-- include: data-science.yml
-- include: music-for-programming.yml
-- include: pentaho.yml
-
-- include: vagrant_precise.yml
-  when: ansible_distribution_release == "precise"
+#- include: topojson.yml
+#- include: mysql-python.yml
+#- include: python-packages.yml
+#- include: r-project.yml
+#- include: data-science.yml
+#- include: music-for-programming.yml
+#- include: pentaho.yml
+#
+#- include: vagrant_precise.yml
+#  when: ansible_distribution_release == "precise"

@@ -4,9 +4,10 @@
 - include: yakuake.yml
 - include: java8.yml
 - include: flux.yml
-- include: google-desktop.yml
-- include: sync-drive.yml
+#- include: google-desktop.yml
+#- include: sync-drive.yml
 - include: qbittorrent.yml
+- include: picard.yml
 - include: copy.yml
 
 - name: install Flash
