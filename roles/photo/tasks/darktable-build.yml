@@ -1,0 +1,17 @@
+- name: install dependencies
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - cmake
+    - libgtk2.0-dev
+    - xsltproc
+    - liblcms2-dev
+    - libsqlite3-dev
+    - libexiv2-dev
+    - libjpeg-dev
+    - libtiff5-dev
+    - libxml++2.6-dev
+    - libwebp-dev
+    - liblensfun-dev
+    - librsvg2-dev
+    - libcurl4-openssl-dev
+  sudo: yes
